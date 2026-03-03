@@ -39,12 +39,21 @@ class LoginController extends Controller
         // $user->tokens()->delete();
 
         // Créer token
-        $token = $user->createToken('api_token',['*'],now()->addHour() )->plainTextToken;
+        $token = $user->createToken('api_token', ['*'], now()->addHour())->plainTextToken;
         return response()->json([
             'message' => 'Connexion réussie',
             'token' => $token,
             'user' => $user
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        // Supprime uniquement le token utilisé actuellement
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => 'Déconnexion réussie.'
+        ], 200);
+    }
 }
-    

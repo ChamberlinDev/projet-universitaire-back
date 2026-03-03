@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('auth/register', [RegistreController::class, 'register']);
 Route::post('auth/login', [LoginController::class, 'login']);
 
+Route::middleware('auth:sanctum')->post('auth/logout', [LoginController::class, 'logout']);
+
 
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::post('/users/{id}/activate', [UserController::class, 'activate']);
