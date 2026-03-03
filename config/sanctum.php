@@ -47,8 +47,7 @@ return [
     |
     */
 
-    'expiration' => null,
-
+    'expiration' => 60, // 60 minutes = 1 heure
     /*
     |--------------------------------------------------------------------------
     | Token Prefix
